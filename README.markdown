@@ -15,10 +15,9 @@ This library was built during the Linguágil 2011 event, in Salvador, along with
 * Support more data handles
 
 ## Todo
-* some unit tests would be great
-* the code needs to be commented
-* create a better documentation for language support
-* error handling can be improved, should focus on that
+* improve the current tests code coverage
+* create a better documentation for implementing new languages
+* error handling can be improved
 
 ## Using LexicalAnalyzer
 Using the library is pretty simple. You must either read a string or open a resource, then create a new instance of the LexicalAnalyzer you want to use. In this case, let's use the LaTeX one. 
