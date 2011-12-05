@@ -43,13 +43,12 @@ abstract class Analyzer {
 					
 					if (preg_match_all('/\n/', $group[0], $linefeeds)) {
 						$line += count($linefeeds[0]);
-						$column = 0;
+						$column = 1;
 					}
 					
 					if (preg_match('/(.*\n)?([^\n]*)$/', $group[0], $columnfeeds)) {
 						$sizeof = count($columnfeeds) - 1;
 						$column += mb_strlen($columnfeeds[$sizeof], 'UTF-8');
-						
 					}
 						
 					break;
