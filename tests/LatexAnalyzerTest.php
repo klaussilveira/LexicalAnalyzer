@@ -222,6 +222,22 @@ class LatexAnalyzerTest extends PHPUnit_Framework_TestCase {
 	$this->assertEquals(1, $token->column);
     }
     
+   public function testParsingBeginDocumentCommand(){
+    	$tokens = $this->latex->parse('\begin{document}');
+    	$this->assertNotNull($tokens);
+    	$this->assertEquals(1, sizeof($tokens));
+		$this->assertEquals('T_LATEX_COMMAND', $tokens[0]->type);
+		$this->assertEquals('\begin{document}', $tokens[0]->value);
+    }
+
+    public function testParsingFrontmatterCommand(){
+    	$tokens = $this->latex->parse('\frontmatter');
+    	$this->assertNotNull($tokens);
+    	$this->assertEquals(1, sizeof($tokens));
+		$this->assertEquals('T_LATEX_COMMAND', $tokens[0]->type);
+		$this->assertEquals('\frontmatter', $tokens[0]->value);
+    }
+ 
     public function testIsParsingCommandsWithoutParameters() {
 	$tokens = $this->latex->parse('Lorem \frontmatter');
 	$this->assertNotNull($tokens);
