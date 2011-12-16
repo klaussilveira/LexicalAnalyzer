@@ -223,7 +223,7 @@ class LatexAnalyzerTest extends PHPUnit_Framework_TestCase {
     }
     
     public function testIsParsingCommandsWithoutParameters() {
-	$tokens = $this->latex->parse("Lorem \frontmatter");
+	$tokens = $this->latex->parse('Lorem \frontmatter');
 	$this->assertNotNull($tokens);
 	$this->assertEquals(2, sizeof($tokens));
 	$token = $tokens[0];
@@ -233,7 +233,7 @@ class LatexAnalyzerTest extends PHPUnit_Framework_TestCase {
 	$this->assertEquals(1, $token->column);
 	$token = $tokens[1];
 	$this->assertEquals("T_LATEX_COMMAND", $token->type);
-	$this->assertEquals("\frontmatter", $token->value);
+	$this->assertEquals('\frontmatter', $token->value);
 	$this->assertEquals(1, $token->line);
 	$this->assertEquals(7, $token->column);
     }
