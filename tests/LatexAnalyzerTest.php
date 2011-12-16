@@ -1,16 +1,5 @@
 <?php
 
-function autoload($class) {
-    $class = str_replace('\\', DIRECTORY_SEPARATOR, $class);
-    $file = __DIR__ . "/../lib/$class.php";
-    if(file_exists($file)) {
-        require_once($file);
-        return true;
-    }    
-}
-
-spl_autoload_register("autoload");
-
 class LatexAnalyzerTest extends PHPUnit_Framework_TestCase {
     public $latex;
     
@@ -233,8 +222,24 @@ class LatexAnalyzerTest extends PHPUnit_Framework_TestCase {
 	$this->assertEquals(1, $token->column);
     }
     
+   public function testParsingBeginDocumentCommand(){
+    	$tokens = $this->latex->parse('\begin{document}');
+    	$this->assertNotNull($tokens);
+    	$this->assertEquals(1, sizeof($tokens));
+		$this->assertEquals('T_LATEX_COMMAND', $tokens[0]->type);
+		$this->assertEquals('\begin{document}', $tokens[0]->value);
+    }
+
+    public function testParsingFrontmatterCommand(){
+    	$tokens = $this->latex->parse('\frontmatter');
+    	$this->assertNotNull($tokens);
+    	$this->assertEquals(1, sizeof($tokens));
+		$this->assertEquals('T_LATEX_COMMAND', $tokens[0]->type);
+		$this->assertEquals('\frontmatter', $tokens[0]->value);
+    }
+ 
     public function testIsParsingCommandsWithoutParameters() {
-	$tokens = $this->latex->parse("Lorem \frontmatter");
+	$tokens = $this->latex->parse('Lorem \frontmatter');
 	$this->assertNotNull($tokens);
 	$this->assertEquals(2, sizeof($tokens));
 	$token = $tokens[0];
@@ -244,7 +249,7 @@ class LatexAnalyzerTest extends PHPUnit_Framework_TestCase {
 	$this->assertEquals(1, $token->column);
 	$token = $tokens[1];
 	$this->assertEquals("T_LATEX_COMMAND", $token->type);
-	$this->assertEquals("\frontmatter", $token->value);
+	$this->assertEquals('\frontmatter', $token->value);
 	$this->assertEquals(1, $token->line);
 	$this->assertEquals(7, $token->column);
     }
