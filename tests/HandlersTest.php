@@ -1,7 +1,9 @@
 <?php
 
-class HandlersTest extends PHPUnit_Framework_TestCase {
-    public function testIsHandlingString() {
+class HandlersTest extends PHPUnit_Framework_TestCase
+{
+    public function testIsHandlingString()
+    {
         $stringMock = <<<'MOCK'
 %% =========================
 %% This is a comment, dammit
@@ -60,7 +62,8 @@ MOCK;
         $this->assertEquals(false, $handler->hasMoreData());
     }
 	
-    public function testIsHandlingStream() {
+    public function testIsHandlingStream()
+    {
         $resourceMock = fopen("sample.tex", "r");
         $handler = new LexicalAnalyzer\Handlers\StreamHandle($resourceMock);
         $this->assertEquals("%% =========================\n", $handler->getData());

@@ -1,6 +1,7 @@
 <?php
 
-function autoload($class) {
+function autoload($class)
+{
     $class = str_replace('\\', DIRECTORY_SEPARATOR, $class);
     $file = __DIR__ . "/../lib/$class.php";
     if(file_exists($file)) {

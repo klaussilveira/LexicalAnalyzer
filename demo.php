@@ -1,6 +1,7 @@
 <?php
 
-function __autoload($class) {
+function __autoload($class)
+{
     $class = str_replace('\\', DIRECTORY_SEPARATOR, $class);
     require_once(__DIR__ . "/lib/$class.php");
 }

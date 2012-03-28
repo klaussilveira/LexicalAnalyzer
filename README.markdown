@@ -1,4 +1,6 @@
 # LexicalAnalyzer
+[![Build Status](https://secure.travis-ci.org/klaussilveira/LexicalAnalyzer.png)](http://travis-ci.org/klaussilveira/LexicalAnalyzer)
+
 A simple library for lexical analysis written in PHP. Currently, LexicalAnalyzer only has a LaTeX extension, but it can be easily extended to support any other language. It works by receiveing either an input string or a resource and parsing it's contents into token objects, which then can be manipulated and used for many purposes. 
 
 This library was built during the Linguágil 2011 event, in Salvador, along with Guto Maia. We had an insight while discussing Martin Fowler's book "Domain Specific Languages" and his approach to lexical analysis. This is a rough implementation, begging to be improved. It strongly relies on Guto Maia's "magical" regex.  
