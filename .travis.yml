@@ -2,4 +2,4 @@ language: php
 php:
   - 5.3
   - 5.4
-script: phpunit --bootstrap tests/loader.php tests/
+script: phpunit
